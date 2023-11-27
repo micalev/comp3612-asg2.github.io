@@ -59,6 +59,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     return storedData ? JSON.parse(storedData) : null;
   }
 
+  // Function to retrieve songsData from localStorage
+  function getSongsDataFromLocalStorage() {
+    const storedData = localStorage.getItem('songsData');
+    if (storedData) {
+      return JSON.parse(storedData);
+    }
+    return null;
+  }
+
+  // Function to load data
   async function loadData() {
     let songsData = getSongsData();
 
@@ -70,16 +80,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
-    // Function to retrieve songsData from localStorage
-    function getSongsData() {
-      const storedData = localStorage.getItem('songsData');
-      if (storedData) {
-        return JSON.parse(storedData);
-      }
-      return null;
-    }
-
+    // Call the function to populate dropdowns when the page loads
+    populateDropdowns();
   }
+
   // Call the function to load data when the page loads
   loadData();
 
