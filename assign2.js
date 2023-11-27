@@ -1,20 +1,20 @@
 
+// Create toggle page for header
+function togglePage(pageId) {
+  const pages = document.querySelectorAll(".page");
+  pages.forEach(page => {
+    if (page.id === pageId) {
+      page.classList.add("active");
+    } else {
+      page.classList.remove("active");
+    }
+  });
+}
+
 // Function to convert seconds to a formatted duration (minutes:seconds)
 function formatDuration(seconds) {
 const minutes = Math.floor(seconds / 60);
 const remainingSeconds = seconds % 60;
-
-  // Create toggle page for header
-  function togglePage(pageId) {
-    const pages = document.querySelectorAll(".page");
-    pages.forEach(page => {
-      if (page.id === pageId) {
-        page.classList.add("active");
-      } else {
-        page.classList.remove("active");
-      }
-    });
-  }
 
 // Ensure seconds are displayed with leading zero if < 10
 const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
