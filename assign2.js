@@ -36,13 +36,13 @@ radioButtons.forEach(function(radioButton) {
 
 
 // Event listener for when the DOM is loaded
-document.addEventListener("DOMContentLoaded", async () => {
-  const apiUrl = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
-  // Function to fetch song data from the API
+document.addEventListener("DOMContentLoaded", async () => {
+  const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
+
   async function fetchSongData() {
     try {
-      const response = await fetch(apiUrl);
+      const response = await fetch(api);
       if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
@@ -54,13 +54,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // Function to retrieve songsData from localStorage
   function getSongsData() {
     const storedData = localStorage.getItem('songsData');
     return storedData ? JSON.parse(storedData) : null;
   }
 
-  // Function to load data
   async function loadData() {
     let songsData = getSongsData();
 
@@ -71,18 +69,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem('songsData', JSON.stringify(songsData));
       }
     }
-  
+
+    // Function to retrieve songsData from localStorage
+    function getSongsData() {
+      const storedData = localStorage.getItem('songsData');
+      if (storedData) {
+        return JSON.parse(storedData);
+      }
+      return null;
+    }
+
+  }
   // Call the function to load data when the page loads
   loadData();
-
-  // Function to retrieve songsData from localStorage
-  function getSongsData() {
-  const storedData = localStorage.getItem('songsData');
-  if (storedData) {
-    return JSON.parse(storedData);
-  }
-  return null; // Return null if songsData doesn't exist in localStorage
-}
 
   // Code for managing radio buttons, input-text, and associated dropdowns
   const radioButtons = document.querySelectorAll('input[type="radio"][name="searchType"]');
