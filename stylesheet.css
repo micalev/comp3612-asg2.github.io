@@ -1,0 +1,332 @@
+/* Define the font face for Sohne-Bold */
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Martel+Sans:wght@300&display=swap');
+
+/* Color Palette */
+:root {
+    /* hex */
+    /* --color-white: #FBFFFE;
+    --color-dark-gray: #252422; */
+    --color-medium-blue: #E5D4ED;
+    --color-dark-purple-400: #5941A9;
+    --color-dark-purple-500: #1D1128;
+    --color-light-purple: #E5D4ED;
+    --color-black: #001514;
+
+    /* rgba */
+    --color-dark-gray-50: rgba(37,36,34,0.2);
+    --color-dark-gray-100: rgba(37,36,34,0.9);
+    --color-dark-gray-200: rgba(37,36,34,1);
+
+    --color-white-100: rgba(251,255,254);
+    --color-white-200: rgba(251,255,254,0.15);
+    --color-white-300: rgba(251,255,254,0.5);
+}
+
+/* Make other pages hidden by default */
+.page {
+    display: none;
+}
+
+/* Show the active page */
+.page.active {
+    display: flex;
+}
+
+/* Style for the credits popup panel */
+.popup {
+    position: relative;
+    display: inline-block;
+}
+
+.popup-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the button */
+    left: 0;
+    min-width: 150px;
+    z-index: 1;
+}
+
+.popup-content2 {
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: 0;
+    min-width: 150px;
+}
+
+.popup:hover .popup-content, .popup2:hover .popup-content2 {
+    display: block; /* Show content on hover */
+    background-color: var(--color-white-100);
+}
+
+.popup-content a {
+    margin-top: 5px;
+}
+
+.popup-content a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--color-dark-gray-200);
+}
+
+a:hover {
+    color: var(--color-white-100);
+    background-color: var(--color-dark-gray-100);
+}
+
+.popup-content2 a:hover {
+    cursor: default;
+    color: var(--color-dark-gray-200);
+    background-color: var(--color-white-100);
+}
+
+/* Style for the body of the HTML */
+html {
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-dark-gray-200);
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    color: var(--color-white-100);
+}
+
+/* Header styles */
+header {
+    padding: 15px, 5px;
+}
+
+#logo img {
+   width: 50px;
+   filter: contrast(50%);
+   position: absolute;
+   margin-top: -4px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+nav li {
+    list-style: none;
+    display: inline;    
+}
+
+nav li a {
+    text-decoration: none;
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    background-color: var(--color-white-200);
+    color: var(--color-white-100);
+    display: flex;
+    justify-content: flex-end;
+    margin: 0px 10px 10px 10px;
+}
+
+
+/* Main body styles */
+main {
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.container {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.column {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+#homePage li, #searchPage li {
+    list-style: none; 
+}
+
+.pageTitle {
+    font-size: 24px;
+    color: var(--color-white-100);
+    text-align: center;
+}
+
+/* Home page styles */
+#homePage {
+    background-color: var(--color-white-200); 
+    border-style: none;
+    border-radius: 7px;
+    padding: 5px 10px;
+}
+
+/* Search Page styles*/
+#searchPage {
+    width: 100%;
+    min-height: 650px;
+}
+
+.left-div { 
+    width: 30%; 
+    background-color: var(--color-white-200); 
+    border-style: none;
+    border-radius: 7px;
+    margin-right: 20px;
+}
+
+.right-div { 
+    width: 70%; 
+    background-color: var(--color-white-200);
+    border-style: none;
+    border-radius: 7px;
+    padding: 7px 10px;
+}
+
+
+/* Style for the form / nav bar */
+.sidebar {
+    height: 100%; 
+    max-width: 250px; 
+    min-height: 700px;
+    padding: 20px;
+    border-radius: 7px;
+}
+
+.sidebar h3 {
+    text-align: center;
+    font-weight: 500;
+}
+
+.form-buttons {
+    justify-content: center;
+    display: flex;
+}
+
+.form-buttons button {
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    margin: 0px 10px;
+    border-radius: 4px;
+    width: 100px;
+    background-color: var(--color-dark-purple-500);
+    color: var(--color-white-100);
+}
+
+.sidebar button:hover {
+    cursor: pointer;
+}
+
+.custom-radio:checked {
+    accent-color: var(--color-dark-purple-400);
+}
+
+label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* search result styles */
+#songTitleInput, #genreDropdown, #artistDropdown {
+    width: 100px;
+    height: 20px;
+    margin-left: 10px;
+    
+}
+
+.table-container {
+    display: table;
+    width: 100%;
+}
+
+.oneline-list { display: flex; }
+
+.oneline-list li {
+    display: table-cell;
+    padding: 10px 5px;
+}
+
+.c1 { width: 40%; }
+.c2 { width: 25%; }
+.c3 { width: 10%; }
+.c4 { width: 15%; }
+.c5 { width: 10%; }
+
+.resultTitles {
+    display: flex;
+    list-style: none;
+    background-color: var(--color-dark-purple-500);
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.table-container ul:nth-child(even) {
+    background-color: var(--color-dark-gray-200);
+    border-radius: 10px;
+  }
+
+.songTitleHyperlink {
+    text-decoration: none;
+    color: var(--color-white-100);
+}
+
+.songTitleHyperlink:hover {
+    background-color: var(--color-medium-blue);
+    color: var(--color-dark-purple-500);
+}
+
+.addButton {
+    border-style: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: var(--color-dark-purple-400);
+    color: var(--color-white-100);
+}
+
+.addButton:hover {
+    cursor: pointer;
+}
+
+/* Style for the ellipsis spantool */
+.spantool {
+    cursor: pointer;
+}
+
+/* Style for the tooltip popup */
+.spantool-popup {
+    background-color: var(--color-dark-purple-400);
+    color: white;
+    padding: 7px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+#singleSongView .right-div{
+    padding: 5px;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Single song view page styles */
+#singleSongView h2 {
+    padding: 10px;
+}
+
+#singleSongView .left-div {
+    padding: 20px;
+}
+
+#analysisData {
+    margin-top: 50px;
+}
+

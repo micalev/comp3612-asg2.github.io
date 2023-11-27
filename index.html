@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music App</title>
+
+    <link href="stylesheet.css" rel="stylesheet">
+
+    <script src="assign2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="radarChart.js"></script>
+</head>
+<body>
+    <div>
+        <header>
+            <div id="logo">
+                <!-- Can go back to the home page by clicking on the logo -->
+                <img src="images/music-logo.png" alt="Logo" onclick="togglePage('homePage')">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="togglePage('searchPage')">Search</a></li>
+                    <li><a href="#" onclick="togglePage('playlistPage')">Playlist</a></li>
+
+                    <li class="popup">
+                        <!-- This is for the pop-up panel for the credits button -->
+                        <a href="#">Credits</a>
+                        <div class="popup-content">
+                            <div class="popup2">
+                                <a href="#">Group names</a>
+                                <div class="popup-content2">
+                                    <a href="#">Mica Leviste</a>
+                                </div>
+                            </div>
+                            <div id="githublink"><a href="https://github.com/micalev">Github url</a></div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Home page -->
+            <div class="container page active" id="homePage">
+                <section class="column" id="topGenres">
+                    <h2>Top Genres</h2>
+                    <ul id="genreList"></ul>
+                </section>
+                <section class="column" id="topArtists">
+                    <h2>Top Artists</h2>
+                    <ul id="artistList"></ul>
+                </section>
+                <section class="column" id="topSongs">
+                    <h2>Most Popular Songs</h2>
+                    <ul id="songList"></ul>
+                </section>
+            </div>
+
+            <!-- Search page -->
+            <div class="page" id="searchPage">
+                <div class="sidebar left-div">
+                    <h3>Basic Song Search</h3>
+                    <form id="searchForm">
+                        <div class="form-group">
+                            <label for="songTitle">
+                                <input type="radio" name="searchType" value="title" id="songTitle" class="custom-radio" checked>
+                                Title
+                                <input type="text" placeholder="Type here" id="songTitleInput" name="songTitle" required class="input-text">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="songArtist">
+                                <input type="radio" name="searchType" value="artist" id="songArtist" class="custom-radio">
+                                Artist
+                                <select class="dropdown" id="artistDropdown" disabled>
+                                    <option value="" disabled selected>Pick one</option>
+                                    <!-- Add options for artist -->
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="songGenre">
+                                <input type="radio" name="searchType" value="genre" id="songGenre" class="custom-radio">
+                                Genre
+                                <select class="dropdown" id="genreDropdown" disabled>
+                                    <option value="" disabled selected>Pick one</option>
+                                    <!-- Add options for genre -->
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group form-buttons">
+                            <button type="clear" id="clearButton">Clear</button>
+                            <button type="submit" id="submitButton">Filter</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="searchResultsArea right-div">
+                    <h2 class="pageTitle">Search Results</h2>
+                    <div class="table-container">
+                      <ul class="resultTitles">
+                        <li class="c1">Title</li>
+                        <li class="c2">Artist</li>
+                        <li class="c3">Year</li>
+                        <li class="c4">Genre</li>
+                        <li class="c5"></li>
+                      </ul>
+                  
+                      <!-- This div is for the displaySongDetails function -->
+                      <div id="songDetails" class="songList"></div>
+                    </div>
+                  </div>
+
+            </div>
+                
+            
+            <!-- Single song view -->
+            <div class="page" id="singleSongView">
+                <div class="left-div">
+                    <h2>Song Information</h2>
+                    <div id="songInfo"></div>
+                    <div id="analysisData"></div>
+                </div>
+                <div class="right-div chart-area">
+                    <h2>Radar Chart</h2>
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+            
+            
+
+            <!-- Playlist page -->
+            <div class="page" id="playlistPage"></div>
+        </main>
+
+        <footer>Footer Here</footer>
+    </div>
+
+    <script src="assign2.js"></script>
+</body>
+</html>
