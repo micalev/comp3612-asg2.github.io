@@ -35,44 +35,42 @@ radioButtons.forEach(function(radioButton) {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
+// Event listener for when the DOM is loaded
+document.addEventListener("DOMContentLoaded", async () => {
+  const apiUrl = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
-  const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
   // Function to fetch song data from the API
   async function fetchSongData() {
-      try {
-      const response = await fetch('http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php');
+    try {
+      const response = await fetch(apiUrl);
       if (!response.ok) {
-          throw new Error('Network response was not ok.');
+        throw new Error('Network response was not ok.');
       }
       const data = await response.json();
       return data;
-      } catch (error) {
+    } catch (error) {
       console.error('Error fetching data:', error);
       return null;
-      }
+    }
   }
-  
-  // Function to check local storage and fetch data accordingly
+
+  // Function to retrieve songsData from localStorage
+  function getSongsData() {
+    const storedData = localStorage.getItem('songsData');
+    return storedData ? JSON.parse(storedData) : null;
+  }
+
+  // Function to load data
   async function loadData() {
-      let songsData = localStorage.getItem('songsData');
-  
-      if (!songsData) {
-      // Fetch data from the API if not available in local storage
+    let songsData = getSongsData();
+
+    if (!songsData) {
       songsData = await fetchSongData();
-  
-      // Store fetched data in local storage
+
       if (songsData) {
-          localStorage.setItem('songsData', JSON.stringify(songsData));
+        localStorage.setItem('songsData', JSON.stringify(songsData));
       }
-      } else {
-      // Use the data from local storage
-      songsData = JSON.parse(songsData);
-      }
-  
-      // Use the songsData variable for further processing or displaying on your webpage
-      //console.log('Songs data:', songsData);
-  }
+    }
   
   // Call the function to load data when the page loads
   loadData();
