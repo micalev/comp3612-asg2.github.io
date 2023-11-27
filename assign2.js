@@ -318,7 +318,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
-  }
+  };
 
 })
 
