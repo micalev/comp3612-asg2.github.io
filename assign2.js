@@ -1,14 +1,3 @@
-// Create toggle page for header
-function togglePage(pageId) {
-  const pages = document.querySelectorAll(".page");
-  pages.forEach(page => {
-    if (page.id === pageId) {
-      page.classList.add("active");
-    } else {
-      page.classList.remove("active");
-    }
-  });
-}
 
 // Function to convert seconds to a formatted duration (minutes:seconds)
 function formatDuration(seconds) {
@@ -38,6 +27,17 @@ radioButtons.forEach(function(radioButton) {
 // Event listener for when the DOM is loaded
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Create toggle page for header
+  function togglePage(pageId) {
+    const pages = document.querySelectorAll(".page");
+    pages.forEach(page => {
+      if (page.id === pageId) {
+        page.classList.add("active");
+      } else {
+        page.classList.remove("active");
+      }
+    });
+  }
   const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
   async function fetchSongData() {
