@@ -37,7 +37,7 @@ radioButtons.forEach(function(radioButton) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
+  const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
   // Function to fetch song data from the API
   async function fetchSongData() {
       try {
