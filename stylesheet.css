@@ -6,13 +6,19 @@
     /* hex */
     /* --color-white: #FBFFFE;
     --color-dark-gray: #252422; */
-    --color-medium-blue: #E5D4ED;
+
     --color-dark-purple-400: #5941A9;
     --color-dark-purple-500: #1D1128;
     --color-light-purple: #E5D4ED;
-    --color-black: #001514;
+    --color-medium-pink: #E985B1;
 
     /* rgba */
+    --color-baby-pink: rgb(238,174,202);
+    --color-baby-pink-bg: rgba(238,174,202,1);
+    
+    --color-light-blue: rgba(148,187,233);
+    --color-light-blue-bg: rgba(148,187,233,1);
+
     --color-dark-gray-50: rgba(37,36,34,0.2);
     --color-dark-gray-100: rgba(37,36,34,0.9);
     --color-dark-gray-200: rgba(37,36,34,1);
@@ -33,7 +39,7 @@
 }
 
 /* Style for the credits popup panel */
-.popup {
+/* .popup {
     position: relative;
     display: inline-block;
 }
@@ -41,7 +47,7 @@
 .popup-content {
     display: none;
     position: absolute;
-    top: 100%; /* Position below the button */
+    top: 100%; 
     left: 0;
     min-width: 150px;
     z-index: 1;
@@ -56,26 +62,92 @@
 }
 
 .popup:hover .popup-content, .popup2:hover .popup-content2 {
-    display: block; /* Show content on hover */
+    display: block;
     background-color: var(--color-white-100);
-}
-
-.popup-content a {
-    margin-top: 5px;
+    margin: 0px;
 }
 
 .popup-content a {
     display: block;
-    padding: 8px 12px;
     text-decoration: none;
     color: var(--color-dark-gray-200);
 }
 
-a:hover {
+.popup-content1:hover, .popup-content1 a:hover {
     color: var(--color-white-100);
-    background-color: var(--color-dark-gray-100);
+    background-color: var(--color-medium-pink);
+} */
+
+.popup {
+    position: relative;
+    display: inline-block;
 }
 
+/* Hide the popup and group-names by default */
+.credits-popup {
+    display: none;
+    position: absolute;
+    top: 100%; /* Places the popup below the trigger */
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    z-index: 1;
+    background-color: var(--color-white-100);
+    color: var(--color-white-100);
+}
+
+.credits-popup a:hover {
+    background-color: var(--color-medium-pink);
+    color: var(--color-white-100);
+}
+
+#group-names {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    background-color: var(--color-medium-pink);
+    color: var(--color-white-100);
+    padding: 10px;
+    z-index: 1;
+}
+
+/* Show the popup when hovering over the trigger */
+.popup:hover .credits-popup {
+    display: block;
+}
+
+/* Show the group-names when hovering over its trigger */
+.popup .group-names-trigger:hover + #group-names {
+    display: block;
+}
+
+/* Optional styles for better visibility */
+.credits-popup li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.credits-popup-content {
+    text-decoration: none;
+    color: #333;
+}
+
+
+/* Additional styling for the nested ul */
+#group-names {
+    display: none;
+}
+
+.credits-popup:hover #group-names {
+    display: block;
+    background-color: var(--color-medium-pink);
+    color: var(--color-white-100);
+    min-width: 150px;
+}
+
+
+/* for the group names */
 .popup-content2 a:hover {
     cursor: default;
     color: var(--color-dark-gray-200);
@@ -86,8 +158,11 @@ a:hover {
 html {
     height: 100%;
     width: 100%;
-    background-color: var(--color-dark-gray-200);
+    margin: 0;
     font-family: 'Inter', sans-serif;
+    background: var(--color-baby-pink);
+    background: linear-gradient(0deg, var(--color-baby-pink-bg) 0%, var(--color-light-blue-bg) 100%);
+
 }
 
 body {
@@ -97,14 +172,12 @@ body {
     color: var(--color-white-100);
 }
 
-/* Header styles */
 header {
-    padding: 15px, 5px;
+    padding: 15px, 0px, 15px, 0px;
 }
 
 #logo img {
    width: 50px;
-   filter: contrast(50%);
    position: absolute;
    margin-top: -4px;
 }
@@ -131,9 +204,8 @@ nav li a {
     margin: 0px 10px 10px 10px;
 }
 
-
-/* Main body styles */
 main {
+    background-color: var(--color-white-200);
     border-radius: 15px;
     padding: 15px;
 }
@@ -156,76 +228,29 @@ main {
 .pageTitle {
     font-size: 24px;
     color: var(--color-white-100);
+    margin-bottom: 0;
     text-align: center;
 }
 
-/* Home page styles */
-#homePage {
-    background-color: var(--color-white-200); 
-    border-style: none;
-    border-radius: 7px;
-    padding: 5px 10px;
-}
-
-/* Search Page styles*/
+/* Search Page */
 #searchPage {
     width: 100%;
     min-height: 650px;
 }
 
-.left-div { 
-    width: 30%; 
-    background-color: var(--color-white-200); 
-    border-style: none;
-    border-radius: 7px;
-    margin-right: 20px;
-}
+.left-div { width: 30%; }
 
-.right-div { 
-    width: 70%; 
-    background-color: var(--color-white-200);
-    border-style: none;
-    border-radius: 7px;
-    padding: 7px 10px;
-}
-
+.right-div { width: 70%; }
 
 /* Style for the form / nav bar */
 .sidebar {
     height: 100%; 
     max-width: 250px; 
-    min-height: 700px;
-    padding: 20px;
+    background-color: #333; 
+    padding-top: 20px;
     border-radius: 7px;
-}
-
-.sidebar h3 {
-    text-align: center;
-    font-weight: 500;
-}
-
-.form-buttons {
-    justify-content: center;
-    display: flex;
-}
-
-.form-buttons button {
-    border: none;
-    padding: 8px 15px;
-    font-size: 14px;
-    margin: 0px 10px;
-    border-radius: 4px;
-    width: 100px;
-    background-color: var(--color-dark-purple-500);
-    color: var(--color-white-100);
-}
-
-.sidebar button:hover {
-    cursor: pointer;
-}
-
-.custom-radio:checked {
-    accent-color: var(--color-dark-purple-400);
+    margin: 20px;
+    padding: 20px;
 }
 
 label {
@@ -233,7 +258,6 @@ label {
     margin-bottom: 20px;
 }
 
-/* search result styles */
 #songTitleInput, #genreDropdown, #artistDropdown {
     width: 100px;
     height: 20px;
@@ -241,6 +265,7 @@ label {
     
 }
 
+/* search result area in search page */
 .table-container {
     display: table;
     width: 100%;
@@ -254,10 +279,10 @@ label {
 }
 
 .c1 { width: 40%; }
-.c2 { width: 25%; }
-.c3 { width: 10%; }
-.c4 { width: 15%; }
-.c5 { width: 10%; }
+.c2 { width: 20%; }
+.c3 { width: 15%; }
+.c4 { width: 20%; }
+.c5 { width: 5%; }
 
 .resultTitles {
     display: flex;
@@ -272,34 +297,23 @@ label {
 .table-container ul:nth-child(even) {
     background-color: var(--color-dark-gray-200);
     border-radius: 10px;
-  }
+}
 
-.songTitleHyperlink {
+a.songLink {
     text-decoration: none;
     color: var(--color-white-100);
 }
 
-.songTitleHyperlink:hover {
-    background-color: var(--color-medium-blue);
-    color: var(--color-dark-purple-500);
+.sort-button {
+    width: 30px;
+    margin-right: 10px;
 }
 
-.addButton {
-    border-style: none;
-    border-radius: 4px;
-    padding: 8px 15px;
-    font-size: 14px;
-    background-color: var(--color-dark-purple-400);
-    color: var(--color-white-100);
-}
-
-.addButton:hover {
-    cursor: pointer;
-}
-
-/* Style for the ellipsis spantool */
+/* Style for the ellipsis */
 .spantool {
     cursor: pointer;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* Style for the tooltip popup */
@@ -315,18 +329,5 @@ label {
     padding: 5px;
     justify-content: center;
     text-align: center;
-}
-
-/* Single song view page styles */
-#singleSongView h2 {
-    padding: 10px;
-}
-
-#singleSongView .left-div {
-    padding: 20px;
-}
-
-#analysisData {
-    margin-top: 50px;
 }
 
