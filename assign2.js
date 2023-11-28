@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // This function displays all the songs for the default look of the search page
     function displayAllSongs() {
       const allSongs = getSongsData();
       if (allSongs) {

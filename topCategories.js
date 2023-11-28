@@ -21,8 +21,15 @@ function displayTopGenres(songsData) {
       genreLink.href = '#';
       genreLink.textContent = genre;
       genreLink.addEventListener('click', () => {
-        // Implement functionality to display songs for this genre
+        // display songs for this genre
         const filteredSongs = songsData.filter(song => song.genre.name === genre);
+
+        // Activate the genre radio button and set the selected genre in the dropdown
+        const genreRadioButton = document.querySelector('input[value="genre"]');
+        const genreDropdown = document.querySelector('#genreDropdown');
+
+        genreRadioButton.checked = true;
+        genreDropdown.value = genre;
 
         // Open the single song view page
         togglePage('homePage'); // Hide search page view
@@ -62,8 +69,15 @@ function displayTopArtists(songsData) {
       artistLink.textContent = artist;
       artistLink.addEventListener('click', () => {
         // display songs for this artist
-
         const filteredSongs = songsData.filter(song => song.artist.name === artist);
+
+        // Activate the artist radio button and set the selected artist in the dropdown
+        const artistRadioButton = document.querySelector('input[value="artist"]');
+        const artistDropdown = document.querySelector('#artistDropdown');
+
+        artistRadioButton.checked = true;
+        artistDropdown.value = artist;
+        
 
         // Open the single song view page
         togglePage('homePage'); // Hide search page view
@@ -104,3 +118,6 @@ function displayMostPopularSongs(songsData) {
     });
   }
 }
+
+// Activate the radio button in search page when user clicks the genre or artist from the home page
+// Activate the genre radio button and set the selected genre in the dropdown

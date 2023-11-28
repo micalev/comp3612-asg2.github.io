@@ -7,8 +7,10 @@ function displaySearchResults(songs) {
   songs.forEach(song => {
     let displayedTitle = song.title.length > 25 ? `${song.title.slice(0, 25)}` : song.title;
     
-    const shortTitle = `<a href="#" class="songTitleHyperlink">${displayedTitle}</a>
-    <span class="spantool" data-title="${song.title}"></span>`;
+    const shortTitle = `
+      <a href="#" class="songTitleHyperlink">${displayedTitle}</a>
+      <span class="spantool" data-title="${song.title}"></span>
+    `;
     
     const longTitle = `
       <a href="#" class="songTitleHyperlink">${displayedTitle}</a>

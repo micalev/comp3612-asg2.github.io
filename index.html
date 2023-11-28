@@ -44,15 +44,15 @@
             <div class="container page active" id="homePage">
                 <section class="column" id="topGenres">
                     <h2>Top Genres</h2>
-                    <ul id="genreList"></ul>
+                    <ol id="genreList"></ol>
                 </section>
                 <section class="column" id="topArtists">
                     <h2>Top Artists</h2>
-                    <ul id="artistList"></ul>
+                    <ol id="artistList"></ol>
                 </section>
                 <section class="column" id="topSongs">
                     <h2>Most Popular Songs</h2>
-                    <ul id="songList"></ul>
+                    <ol id="songList"></ol>
                 </section>
             </div>
 
@@ -63,7 +63,7 @@
                     <form id="searchForm">
                         <div class="form-group">
                             <label for="songTitle">
-                                <input type="radio" name="searchType" value="title" id="songTitle" class="custom-radio" checked>
+                                <input type="radio" name="searchType" value="title" id="songTitle" class="custom-radio">
                                 Title
                                 <input type="text" placeholder="Type here" id="songTitleInput" name="songTitle" required class="input-text">
                             </label>
@@ -72,7 +72,7 @@
                             <label for="songArtist">
                                 <input type="radio" name="searchType" value="artist" id="songArtist" class="custom-radio">
                                 Artist
-                                <select class="dropdown" id="artistDropdown" disabled>
+                                <select class="dropdown" id="artistDropdown">
                                     <option value="" disabled selected>Pick one</option>
                                     <!-- Add options for artist -->
                                 </select>
@@ -82,7 +82,7 @@
                             <label for="songGenre">
                                 <input type="radio" name="searchType" value="genre" id="songGenre" class="custom-radio">
                                 Genre
-                                <select class="dropdown" id="genreDropdown" disabled>
+                                <select class="dropdown" id="genreDropdown">
                                     <option value="" disabled selected>Pick one</option>
                                     <!-- Add options for genre -->
                                 </select>
