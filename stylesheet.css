@@ -11,6 +11,7 @@
     --color-dark-purple-500: #1D1128;
     --color-light-purple: #E5D4ED;
     --color-medium-pink: #E985B1;
+    --color-medium-blue: #74acee;
 
     /* rgba */
     --color-baby-pink: rgb(238,174,202);
@@ -28,132 +29,6 @@
     --color-white-300: rgba(251,255,254,0.5);
 }
 
-/* Make other pages hidden by default */
-.page {
-    display: none;
-}
-
-/* Show the active page */
-.page.active {
-    display: flex;
-}
-
-/* Style for the credits popup panel */
-/* .popup {
-    position: relative;
-    display: inline-block;
-}
-
-.popup-content {
-    display: none;
-    position: absolute;
-    top: 100%; 
-    left: 0;
-    min-width: 150px;
-    z-index: 1;
-}
-
-.popup-content2 {
-    display: none;
-    position: absolute;
-    right: 100%;
-    top: 0;
-    min-width: 150px;
-}
-
-.popup:hover .popup-content, .popup2:hover .popup-content2 {
-    display: block;
-    background-color: var(--color-white-100);
-    margin: 0px;
-}
-
-.popup-content a {
-    display: block;
-    text-decoration: none;
-    color: var(--color-dark-gray-200);
-}
-
-.popup-content1:hover, .popup-content1 a:hover {
-    color: var(--color-white-100);
-    background-color: var(--color-medium-pink);
-} */
-
-.popup {
-    position: relative;
-    display: inline-block;
-}
-
-/* Hide the popup and group-names by default */
-.credits-popup {
-    display: none;
-    position: absolute;
-    top: 100%; /* Places the popup below the trigger */
-    left: 0;
-    background-color: #fff;
-    padding: 10px;
-    z-index: 1;
-    background-color: var(--color-white-100);
-    color: var(--color-white-100);
-}
-
-.credits-popup a:hover {
-    background-color: var(--color-medium-pink);
-    color: var(--color-white-100);
-}
-
-#group-names {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 100%;
-    background-color: var(--color-medium-pink);
-    color: var(--color-white-100);
-    padding: 10px;
-    z-index: 1;
-}
-
-/* Show the popup when hovering over the trigger */
-.popup:hover .credits-popup {
-    display: block;
-}
-
-/* Show the group-names when hovering over its trigger */
-.popup .group-names-trigger:hover + #group-names {
-    display: block;
-}
-
-/* Optional styles for better visibility */
-.credits-popup li {
-    list-style: none;
-    margin-bottom: 5px;
-}
-
-.credits-popup-content {
-    text-decoration: none;
-    color: #333;
-}
-
-
-/* Additional styling for the nested ul */
-#group-names {
-    display: none;
-}
-
-.credits-popup:hover #group-names {
-    display: block;
-    background-color: var(--color-medium-pink);
-    color: var(--color-white-100);
-    min-width: 150px;
-}
-
-
-/* for the group names */
-.popup-content2 a:hover {
-    cursor: default;
-    color: var(--color-dark-gray-200);
-    background-color: var(--color-white-100);
-}
-
 /* Style for the body of the HTML */
 html {
     height: 100%;
@@ -162,7 +37,7 @@ html {
     font-family: 'Inter', sans-serif;
     background: var(--color-baby-pink);
     background: linear-gradient(0deg, var(--color-baby-pink-bg) 0%, var(--color-light-blue-bg) 100%);
-
+    background-attachment: fixed; 
 }
 
 body {
@@ -172,6 +47,7 @@ body {
     color: var(--color-white-100);
 }
 
+/* Header styles */
 header {
     padding: 15px, 0px, 15px, 0px;
 }
@@ -180,6 +56,10 @@ header {
    width: 50px;
    position: absolute;
    margin-top: -4px;
+}
+
+#logo img:hover {
+    filter: brightness(0) invert(1) grayscale(100%) contrast(100%);
 }
 
 nav ul {
@@ -196,16 +76,97 @@ nav li {
 nav li a {
     text-decoration: none;
     padding: 10px 15px 10px 15px;
-    border-radius: 5px;
     background-color: var(--color-white-200);
     color: var(--color-white-100);
     display: flex;
     justify-content: flex-end;
+}
+
+.nav-button {
+    border-radius: 5px;
     margin: 0px 10px 10px 10px;
 }
 
+.nav-button:hover {
+    background-color: var(--color-dark-purple-400);
+}
+
+.popup {
+    position: relative;
+    display: inline-block;
+}
+
+/* Hide the popup and group-names by default */
+.credits-popup {
+    display: none;
+    position: absolute;
+    top: 100%; /* Places the popup below the trigger */
+    left: 0;
+    margin-left: -20px;
+    padding: 0px;
+    z-index: 1;
+    background-color: var(--color-white-100);
+    color: var(--color-white-100);
+}
+
+.credits-popup a:hover {
+    background-color: var(--color-medium-pink);
+    color: var(--color-white-100);
+}
+
+#group-names {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    background-color: var(--color-medium-blue);
+    color: var(--color-white-100);
+    padding: 10px;
+    z-index: 1;
+}
+
+/* Show the popup when hovering over the trigger */
+.popup:hover .credits-popup, .credits-popup-content {
+    display: block;
+    min-width: 150px;
+    color: var(--color-dark-gray-200);
+}
+
+/* Additional styling for the nested ul */
+#group-names {
+    display: none;
+}
+
+.credits-popup li:hover #group-names {
+    display: block;
+    min-width: 150px;
+}
+
+/* for the group names */
+.popup-content2 a:hover {
+    cursor: default;
+    color: var(--color-dark-gray-200);
+    background-color: var(--color-white-100);
+}
+
+#github-url:hover {
+    text-decoration: underline;
+}
+
+
+/* Styles for the main body */
+
+/* Make other pages hidden by default */
+.page {
+    display: none;
+}
+
+/* Show the active page */
+.page.active {
+    display: flex;
+}
+
 main {
-    background-color: var(--color-white-200);
     border-radius: 15px;
     padding: 15px;
 }
@@ -235,18 +196,23 @@ main {
 /* Search Page */
 #searchPage {
     width: 100%;
-    min-height: 650px;
 }
 
 .left-div { width: 30%; }
 
 .right-div { width: 70%; }
 
+.left-div, .right-div {
+    background-color: var(--color-white-200);
+    border-style: none;
+    border-radius: 7px;
+    padding: 15px;
+}
+
 /* Style for the form / nav bar */
 .sidebar {
     height: 100%; 
-    max-width: 250px; 
-    background-color: #333; 
+    background-color: var(--color-white-200); 
     padding-top: 20px;
     border-radius: 7px;
     margin: 20px;
@@ -258,15 +224,15 @@ label {
     margin-bottom: 20px;
 }
 
+
 #songTitleInput, #genreDropdown, #artistDropdown {
     width: 100px;
     height: 20px;
     margin-left: 10px;
-    
 }
 
 /* search result area in search page */
-.table-container {
+/* .table-container {
     display: table;
     width: 100%;
 }
@@ -295,18 +261,35 @@ label {
 }
 
 .table-container ul:nth-child(even) {
-    background-color: var(--color-dark-gray-200);
+    background-color: var(--color-baby-pink);
     border-radius: 10px;
-}
+} */
 
-a.songLink {
+/* a .songLink {
     text-decoration: none;
     color: var(--color-white-100);
+}  */
+
+.searchResultsArea .pageTitle {
+    margin-bottom: 20px;
 }
 
-.sort-button {
-    width: 30px;
-    margin-right: 10px;
+.resultTable {
+    width: 100%;
+}
+
+.resultTable thead {
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.resultTable th, .resultTable td {
+    padding: 5px;
+}
+
+.sort-button img{
+    width: 45px;
+    transform: translateY(40%);
 }
 
 /* Style for the ellipsis */
@@ -325,9 +308,14 @@ a.songLink {
     font-size: 12px;
 }
 
+/* Single Song View Styles */
 #singleSongView .right-div{
     padding: 5px;
     justify-content: center;
     text-align: center;
+    max-width: 900px;
 }
 
+#singleSongView .left-div, #singleSongView .right-div {
+    margin: 20px;
+}

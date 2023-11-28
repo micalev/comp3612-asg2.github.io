@@ -17,21 +17,23 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" onclick="togglePage('searchPage')">Search</a></li>
-                    <li><a href="#" onclick="togglePage('playlistPage')">Playlist</a></li>
+                    <li><a href="#" onclick="togglePage('searchPage')" class="nav-button">Search</a></li>
+                    <li><a href="#" onclick="togglePage('playlistPage')" class="nav-button">Playlist</a></li>
 
                     <li class="popup">
                         <!-- This is for the pop-up panel for the credits button -->
-                        <a href="#">Credits</a>
-                        <div class="popup-content">
-                            <div class="popup2">
-                                <a href="#">Group names</a>
-                                <div class="popup-content2">
-                                    <a href="#">Mica Leviste</a>
-                                </div>
-                            </div>
-                            <div id="githublink"><a href="https://github.com/micalev">Github url</a></div>
-                        </div>
+                        <a href="#" class="nav-button">Credits</a>
+                        <ul class="credits-popup">
+                            <li>
+                                <a href="#" class="credits-popup-content">Group Names</a>
+                                <ul id="group-names" class=>
+                                    <li>Mica Leviste</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="https://github.com/micalev/comp3612-asg2.github.io" class="credits-popup-content" id="github-url">Github url</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -95,18 +97,34 @@
 
                 <div class="searchResultsArea right-div">
                     <h2 class="pageTitle">Search Results</h2>
-                    <div class="table-container">
-                      <ul class="resultTitles">
-                        <li class="c1">Title</li>
-                        <li class="c2">Artist</li>
-                        <li class="c3">Year</li>
-                        <li class="c4">Genre</li>
-                        <li class="c5"></li>
-                      </ul>
-                  
-                      <!-- This div is for the displaySongDetails function -->
-                      <div id="songDetails" class="songList"></div>
-                    </div>
+         
+                    <table class="resultTable">
+                        <thead>
+                            <tr>
+                                <th class="c1">
+                                    Title
+                                    <a class="sort-button sort-by-title"><img src="images/sort-button.png"></a>
+                                </th>
+                                <th class="c2">
+                                    Artist
+                                    <a class="sort-button sort-by-artist"><img src="images/sort-button.png"></a>
+                                </th>
+                                <th class="c3">
+                                    Year
+                                    <a class="sort-button sort-by-year"><img src="images/sort-button.png"></a>
+                                </th>
+                                <th class="c4">
+                                    Genre
+                                    <a class="sort-button sort-by-genre"><img src="images/sort-button.png"></a>
+                                </th>
+                                <th class="c5"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="songDetails" class="songList">
+                            <!-- Table rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+
                   </div>
 
             </div>
@@ -135,6 +153,10 @@
     </div>
 
     <script src="assign2.js"></script>
+    <script src="sort.js"></script>
+    <script src="topCategories.js"></script>
+    <script src="searchResult.js"></script>
+    <script src="singleSongView.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="radarChart.js"></script>
 </body>
