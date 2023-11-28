@@ -1,5 +1,6 @@
 // Function to display the single song view
 function displaySingleSongView(song) {
+  
     // Open the single song view page
     togglePage('searchPage'); // Hide search page view
     togglePage('singleSongView'); // Show single song view page

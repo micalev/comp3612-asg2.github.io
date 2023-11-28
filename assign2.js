@@ -1,4 +1,3 @@
-
 // Create toggle page for header
 function togglePage(pageId) {
   const pages = document.querySelectorAll(".page");
@@ -63,15 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return storedData ? JSON.parse(storedData) : null;
   }
 
-  // // Function to retrieve songsData from localStorage
-  // function getSongsDataFromLocalStorage() {
-  //   const storedData = localStorage.getItem('songsData');
-  //   if (storedData) {
-  //     return JSON.parse(storedData);
-  //   }
-  //   return null;
-  // }
-
   // Function to load data
   function loadData() {
     let songsData = getSongsData();
@@ -97,21 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch songs data and store it in a variable
   const songsData = getSongsData();
 
-  // Call functions from homePage.js to display top genres, top artists, and most popular songs
+  // Call functions to display top genres, top artists, and most popular songs in the home page
   displayTopGenres(songsData);
   displayTopArtists(songsData);
   displayMostPopularSongs(songsData);
-  
 
-  // Add event listeners to the sort buttons
-  const sortButtons = document.querySelectorAll('.sort-button');
-  sortButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          const sortBy = button.classList[1]; // Get the class name to determine the sort type
-          sortSongsBy(sortBy, songsData);
-      });
-  });
-
+  // Search Page
   // Code for managing radio buttons, input-text, and associated dropdowns
   const radioButtons = document.querySelectorAll('input[type="radio"][name="searchType"]');
   const dropdowns = document.querySelectorAll('.dropdown');
@@ -143,15 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
     clearForm();
   });
 
-  // Event listener for the submit button whci hwill print the search results
+  // Event listener for the submit button which will print the search results
   document.querySelector('#searchForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
   
     const searchType = document.querySelector('input[name="searchType"]:checked');
     const searchTerm = document.querySelector('#songTitleInput').value.toLowerCase();
-  
-    // Get songsData from localStorage
-    const songsData = getSongsData();
   
     if (songsData && searchType) {
       let filteredSongs = [];
@@ -175,38 +153,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // This function populates the genre and artist dropdown in the search form
     function populateDropdowns() {
-      fetchSongData()
-        .then(songsData => {
-          if (songsData) {
-            const artistDropdown = document.querySelector('#artistDropdown');
-            const genreDropdown = document.querySelector('#genreDropdown');
-    
-            const uniqueArtists = [...new Set(songsData.map(song => song.artist.name))];
-            const uniqueGenres = [...new Set(songsData.map(song => song.genre.name))];
-    
-            // Clear previous options
-            artistDropdown.innerHTML = '';
-            genreDropdown.innerHTML = '';
-    
-            // Add default option
-            artistDropdown.innerHTML += `<option value="" disabled selected>Pick one</option>`;
-            genreDropdown.innerHTML += `<option value="" disabled selected>Pick one</option>`;
-    
-            // Add options based on unique artist names
-            uniqueArtists.forEach(artist => {
-              artistDropdown.innerHTML += `<option value="${artist}">${artist}</option>`;
-            });
-    
-            // Add options based on unique genre names
-            uniqueGenres.forEach(genre => {
-              genreDropdown.innerHTML += `<option value="${genre}">${genre}</option>`;
-            });
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
+      const songsData = getSongsData();
+
+      if (songsData) {
+        const artistDropdown = document.querySelector('#artistDropdown');
+        const genreDropdown = document.querySelector('#genreDropdown');
+
+        const uniqueArtists = [...new Set(songsData.map(song => song.artist.name))];
+        const uniqueGenres = [...new Set(songsData.map(song => song.genre.name))];
+
+        // Clear previous options
+        artistDropdown.innerHTML = '';
+        genreDropdown.innerHTML = '';
+
+        // Add default option
+        artistDropdown.innerHTML += `<option value="" disabled selected>Pick one</option>`;
+        genreDropdown.innerHTML += `<option value="" disabled selected>Pick one</option>`;
+
+        // Add options based on unique artist names
+        uniqueArtists.forEach(artist => {
+          artistDropdown.innerHTML += `<option value="${artist}">${artist}</option>`;
         });
+
+        // Add options based on unique genre names
+        uniqueGenres.forEach(genre => {
+          genreDropdown.innerHTML += `<option value="${genre}">${genre}</option>`;
+        });
+      }
     }
 
     function displayAllSongs() {
@@ -215,10 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
           displaySearchResults(allSongs);
       }
     }
-
-    // Call the function to populate dropdowns when the page loads
-    populateDropdowns();
-
 });
 
 
