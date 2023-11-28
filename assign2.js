@@ -1,4 +1,4 @@
-// Create toggle page for header
+// This function is the page toggle for the header
 function togglePage(pageId) {
   const pages = document.querySelectorAll(".page");
   pages.forEach(page => {
@@ -12,15 +12,16 @@ function togglePage(pageId) {
 
 // Function to convert seconds to a formatted duration (minutes:seconds)
 function formatDuration(seconds) {
-const minutes = Math.floor(seconds / 60);
-const remainingSeconds = seconds % 60;
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
 
-// Ensure seconds are displayed with leading zero if < 10
-const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+  // Ensure seconds are displayed with leading zero if < 10
+  const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
 
-return `${minutes}:${formattedSeconds}`;
+  return `${minutes}:${formattedSeconds}`;
 }
 
+// function to clear the form/input
 function clearForm() {
   document.querySelector('#songTitleInput').value = ''; // Clear song title input field
   document.querySelector('#artistDropdown').selectedIndex = 0; // Reset artist dropdown to default
@@ -33,11 +34,11 @@ function clearForm() {
   });
 }
 
-
 // Event listener for when the DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
 
+  // This function fetches the data
   function fetchSongData() {
     try {
       return fetch(api)
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // This function is used to get the data from the local storage
   function getSongsData() {
     const storedData = localStorage.getItem('songsData');
     return storedData ? JSON.parse(storedData) : null;
@@ -74,26 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
-    // Call the function to populate dropdowns when the page loads
-    populateDropdowns();
+    populateDropdowns(); // Populate dropdowns when the page loads
   }
 
-  // Call the function to load data when the page loads
-  loadData();
+  loadData(); // Call the function to load data when the page loads
 
-  // Call the function to display all songs initially
-  displayAllSongs();
+  const songsData = getSongsData(); // Fetch songs data and store it in a variable
 
-  // Fetch songs data and store it in a variable
-  const songsData = getSongsData();
+  displaySearchResults(songsData); // Display the default search results
+  displayTopItems(songsData, 'artist', 'name'); // Display top artists 
+  displayTopItems(songsData, 'genre', 'name'); // Display top genres
+  displayMostPopularSongs(songsData); // display the top songs
 
-  // Call functions to display top genres, top artists, and most popular songs in the home page
-  displayTopGenres(songsData);
-  displayTopArtists(songsData);
-  displayMostPopularSongs(songsData);
-
-  // Search Page
-  // Code for managing radio buttons, input-text, and associated dropdowns
+  // Event Listener for managing radio buttons, input-text, and associated dropdowns
   const radioButtons = document.querySelectorAll('input[type="radio"][name="searchType"]');
   const dropdowns = document.querySelectorAll('.dropdown');
   const inputText = document.querySelector('#songTitleInput');
@@ -124,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearForm();
   });
 
-  // Event listener for the submit button which will print the search results
+  // Event listener for the submit button which will filter and print the search results
   document.querySelector('#searchForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
   
@@ -156,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // This function populates the genre and artist dropdown in the search form
     function populateDropdowns() {
       const songsData = getSongsData();
-
       if (songsData) {
         const artistDropdown = document.querySelector('#artistDropdown');
         const genreDropdown = document.querySelector('#genreDropdown');
@@ -181,14 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
         uniqueGenres.forEach(genre => {
           genreDropdown.innerHTML += `<option value="${genre}">${genre}</option>`;
         });
-      }
-    }
-
-    // This function displays all the songs for the default look of the search page
-    function displayAllSongs() {
-      const allSongs = getSongsData();
-      if (allSongs) {
-          displaySearchResults(allSongs);
       }
     }
 });

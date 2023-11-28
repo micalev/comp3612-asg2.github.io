@@ -1,23 +1,20 @@
-function displaySearchResults(songs) {
-  const songDetailsDiv = document.querySelector('#songDetails');
-  songDetailsDiv.innerHTML = '';
-
+// Function to render the song details for display on search page
+function renderSongDetails(songs) {
+  let songTitle;
   let songDetailsHTML = '';
 
   songs.forEach(song => {
     let displayedTitle = song.title.length > 25 ? `${song.title.slice(0, 25)}` : song.title;
-    
+
     const shortTitle = `
       <a href="#" class="songTitleHyperlink">${displayedTitle}</a>
       <span class="spantool" data-title="${song.title}"></span>
     `;
-    
+
     const longTitle = `
       <a href="#" class="songTitleHyperlink">${displayedTitle}</a>
       <span class="spantool" data-title="${song.title}">&hellip;</span>
     `;
-    
-    let songTitle;
 
     if (song.title.length > 25) {
       songTitle = longTitle;
@@ -36,38 +33,45 @@ function displaySearchResults(songs) {
     `;
   });
 
-  songDetailsDiv.innerHTML = songDetailsHTML;
-  
+  return songDetailsHTML;
+}
+
+// Function to handle song title click event
+function handleSongTitleClick(songs) {
+  const songDetailsDiv = document.querySelector('#songDetails');
+
   // Event listener for the song title hyperlink
-  const songTitleHyperlink = songDetailsDiv.querySelectorAll('.songTitleHyperlink');
-  songTitleHyperlink.forEach(link => {
-    link.addEventListener('click', function(event) {
-      event.preventDefault();
+  songDetailsDiv.addEventListener('click', event => {
+    event.preventDefault();
 
-      // Extract the song title from the hyperlink's data attribute
-      const fullTitle = this.nextElementSibling.getAttribute('data-title');
-
-      // Get the song details based on the full title from your data
+    const target = event.target;
+    if (target.classList.contains('songTitleHyperlink')) {
+      const fullTitle = target.nextElementSibling.getAttribute('data-title');
       const selectedSong = songs.find(song => song.title === fullTitle);
 
       if (selectedSong) {
         displaySingleSongView(selectedSong);
       }
-    });
+    }
   });
+}
+
+// Function to handle ellipsis click event
+function handleEllipsisClick() {
+  const songDetailsDiv = document.querySelector('#songDetails');
 
   // Event listener for the spantool when user clicks on the ellipsis
-  const spantoolElements = songDetailsDiv.querySelectorAll('.spantool');
-  spantoolElements.forEach(element => {
-    element.addEventListener('click', function(event) {
+  songDetailsDiv.addEventListener('click', event => {
+    const target = event.target;
+    if (target.classList.contains('spantool')) {
       event.stopPropagation();
 
-      const fullTitle = this.getAttribute('data-title');
+      const fullTitle = target.getAttribute('data-title');
       const spantool = document.createElement('div');
       spantool.classList.add('spantool-popup');
       spantool.textContent = fullTitle;
 
-      const rect = element.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
       spantool.style.position = 'absolute';
       spantool.style.top = `${rect.bottom + window.scrollY}px`;
       spantool.style.left = `${rect.right + window.scrollX}px`;
@@ -77,15 +81,29 @@ function displaySearchResults(songs) {
       setTimeout(() => {
         spantool.remove();
       }, 5000);
-    });
+    }
   });
+}
 
-  // Event listeners for column header clicks to trigger sorting
+// Function to set up column header click listeners for sorting
+function setUpSortingListeners(songs) {
   document.querySelectorAll('.sort-button').forEach(button => {
     button.addEventListener('click', () => {
       const sortBy = button.classList[1].replace('sort-by-', ''); // Extract the column to sort by
       sortSongsBy(sortBy, songs);
     });
   });
+}
 
-};
+// Function to display the search results
+function displaySearchResults(songs) {
+  const songDetailsDiv = document.querySelector('#songDetails');
+  songDetailsDiv.innerHTML = '';
+
+  const songDetailsHTML = renderSongDetails(songs);
+  songDetailsDiv.innerHTML = songDetailsHTML;
+
+  handleSongTitleClick(songs);
+  handleEllipsisClick();
+  setUpSortingListeners(songs);
+}

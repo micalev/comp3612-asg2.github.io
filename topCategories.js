@@ -1,99 +1,52 @@
-// Function to display top genres
-function displayTopGenres(songsData) {
-  if (songsData) {
-    const genresCount = {}; // Object to store genre counts
-
-    // Count the number of songs for each genre
-    songsData.forEach(song => {
-      const genre = song.genre.name;
-      genresCount[genre] = genresCount[genre] ? genresCount[genre] + 1 : 1;
-    });
-
-    // Sort genres based on song counts
-    const sortedGenres = Object.keys(genresCount).sort((a, b) => genresCount[b] - genresCount[a]).slice(0, 15);
-
-    const genreList = document.querySelector('#genreList');
-    genreList.innerHTML = '';
-
-    // Display the top 15 genres with links
-    sortedGenres.forEach(genre => {
-      const genreLink = document.createElement('a');
-      genreLink.href = '#';
-      genreLink.textContent = genre;
-      genreLink.addEventListener('click', () => {
-        // display songs for this genre
-        const filteredSongs = songsData.filter(song => song.genre.name === genre);
-
-        // Activate the genre radio button and set the selected genre in the dropdown
-        const genreRadioButton = document.querySelector('input[value="genre"]');
-        const genreDropdown = document.querySelector('#genreDropdown');
-
-        genreRadioButton.checked = true;
-        genreDropdown.value = genre;
-
-        // Open the single song view page
-        togglePage('homePage'); // Hide search page view
-        togglePage('searchPage'); // Show the search page
-
-        displaySearchResults(filteredSongs);
-      });
-
-      const listItem = document.createElement('li');
-      listItem.appendChild(genreLink);
-      genreList.appendChild(listItem);
-    });
+// This function displays the top genre/artist
+function displayTopItems(songsData, itemType, itemProperty) {
+  if (!songsData || !itemType || !itemProperty) {
+    return;
   }
+
+  const itemCounts = {};
+  songsData.forEach(song => {
+    const item = song[itemType][itemProperty];
+    itemCounts[item] = itemCounts[item] ? itemCounts[item] + 1 : 1;
+  });
+
+  const sortedItems = Object.keys(itemCounts)
+    .sort((a, b) => itemCounts[b] - itemCounts[a])
+    .slice(0, 15);
+
+  const itemList = document.querySelector(`#${itemType}List`);
+  itemList.innerHTML = '';
+
+  sortedItems.forEach(item => {
+    const itemLink = document.createElement('a');
+    itemLink.href = '#';
+    itemLink.textContent = item;
+    itemLink.addEventListener('click', () => {
+      const filteredSongs = songsData.filter(song => song[itemType][itemProperty] === item);
+      handleItemClick(itemType, item, filteredSongs);
+    });
+
+    const listItem = document.createElement('li');
+    listItem.appendChild(itemLink);
+    itemList.appendChild(listItem);
+  });
 }
 
-// Function to display top artists
-function displayTopArtists(songsData) {
-  if (songsData) {
-    const artistsCount = {}; // Object to store artist counts
+// This function handles the item click where user is directed to the search page
+function handleItemClick(itemType, item, filteredSongs) {
+  const radioButton = document.querySelector(`input[value="${itemType}"]`);
+  const dropdown = document.querySelector(`#${itemType}Dropdown`);
 
-    // Count the number of songs for each artist
-    songsData.forEach(song => {
-      const artist = song.artist.name;
-      artistsCount[artist] = artistsCount[artist] ? artistsCount[artist] + 1 : 1;
-    });
+  radioButton.checked = true;
+  dropdown.value = item;
 
-    // Sort artists based on song counts
-    const sortedArtists = Object.keys(artistsCount).sort((a, b) => artistsCount[b] - artistsCount[a]).slice(0, 15);
+  togglePage('homePage');
+  togglePage('searchPage');
 
-    const artistList = document.querySelector('#artistList');
-    artistList.innerHTML = '';
-
-    // Display the top 15 artists with links
-    sortedArtists.forEach(artist => {
-      const artistLink = document.createElement('a');
-      artistLink.href = '#';
-      artistLink.textContent = artist;
-      artistLink.addEventListener('click', () => {
-        // display songs for this artist
-        const filteredSongs = songsData.filter(song => song.artist.name === artist);
-
-        // Activate the artist radio button and set the selected artist in the dropdown
-        const artistRadioButton = document.querySelector('input[value="artist"]');
-        const artistDropdown = document.querySelector('#artistDropdown');
-
-        artistRadioButton.checked = true;
-        artistDropdown.value = artist;
-        
-
-        // Open the single song view page
-        togglePage('homePage'); // Hide search page view
-        togglePage('searchPage'); // Show the search page
-        
-        displaySearchResults(filteredSongs);
-      });
-
-      const listItem = document.createElement('li');
-      listItem.appendChild(artistLink);
-      artistList.appendChild(listItem);
-    });
-  }
+  displaySearchResults(filteredSongs);
 }
 
-// Function to display most popular songs
+// This function displays the top popular songs
 function displayMostPopularSongs(songsData) {
   if (songsData) {
     // Sort songs based on popularity value
@@ -118,6 +71,3 @@ function displayMostPopularSongs(songsData) {
     });
   }
 }
-
-// Activate the radio button in search page when user clicks the genre or artist from the home page
-// Activate the genre radio button and set the selected genre in the dropdown
