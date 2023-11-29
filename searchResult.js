@@ -1,3 +1,5 @@
+// This has already been added to assign2.js
+
 // // Function to render the song details for display on search page
 // function renderSongDetails(songs) {
 //   let songTitle;

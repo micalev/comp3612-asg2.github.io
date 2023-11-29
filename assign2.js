@@ -289,8 +289,10 @@ function displaySearchResults(songs) {
   handleEllipsisClick();
   setUpSortingListeners(songs);
 }
+
  
 // Playlist stuff
+// it wont work :'(
 
 // Function to render the playlist table
 let playlist = [];
