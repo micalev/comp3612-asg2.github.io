@@ -146,7 +146,37 @@
             
 
             <!-- Playlist page -->
-            <div class="page" id="playlistPage"></div>
+            <div class="page" id="playlistPage">
+                <h2>Playlist</h2>
+                <div id="playlistCount"></div>
+                <button id="clearPlaylistButton">Clear Playlist</button>
+                <table class="resultTable">
+                    <thead>
+                        <tr>
+                            <th class="c1">
+                                Title
+                            </th>
+                            <th class="c2">
+                                Artist
+                            </th>
+                            <th class="c3">
+                                Year
+                            </th>
+                            <th class="c4">
+                                Genre
+                            </th>
+                            <th class="c5"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="playlistBody" class="playlistList">
+                        <!-- Table rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        
+            <div id="snackbar" class="hide">This is a snackbar message!</div>
+
+
         </main>
 
         <footer>Footer Here</footer>
@@ -155,7 +185,7 @@
     <script src="assign2.js"></script>
     <script src="sort.js"></script>
     <script src="topCategories.js"></script>
-    <script src="searchResult.js"></script>
+    <!-- <script src="searchResult.js"></script> -->
     <script src="singleSongView.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="radarChart.js"></script>
